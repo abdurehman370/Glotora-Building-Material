@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Filter, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import './Products.css';
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const initialCategory = searchParams.get('category') || 'All';
+    const initialSearch = searchParams.get('search') || '';
+
     const [activeCategory, setActiveCategory] = useState(initialCategory);
+    const [searchTerm, setSearchTerm] = useState(initialSearch);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 10;
 
-    const filteredProducts = activeCategory === 'All'
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+
+    const categoryFiltered = activeCategory === 'All'
         ? productsData
         : productsData.filter(p => p.category === activeCategory);
+
+    const filteredProducts = normalizedSearch
+        ? categoryFiltered.filter(p =>
+            p.name.toLowerCase().includes(normalizedSearch) ||
+            p.code.toLowerCase().includes(normalizedSearch)
+        )
+        : categoryFiltered;
 
     // Calculate pagination
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -20,19 +32,28 @@ const Products = () => {
     const endIndex = startIndex + productsPerPage;
     const currentProducts = filteredProducts.slice(startIndex, endIndex);
 
-    // Reset to page 1 when category changes
+    // Reset to page 1 when category or search changes,
+    // and keep URL in sync with current filters
     useEffect(() => {
         setCurrentPage(1);
         setSearchParams(prev => {
             const next = new URLSearchParams(prev);
+
             if (activeCategory === 'All') {
                 next.delete('category');
             } else {
                 next.set('category', activeCategory);
             }
+
+            if (!normalizedSearch) {
+                next.delete('search');
+            } else {
+                next.set('search', normalizedSearch);
+            }
+
             return next;
         });
-    }, [activeCategory]);
+    }, [activeCategory, normalizedSearch, setSearchParams]);
 
     const goToPage = (page) => {
         setCurrentPage(page);
@@ -69,6 +90,26 @@ const Products = () => {
 
                 {/* Product Grid */}
                 <div className="products-grid-container">
+                    {/* Search bar */}
+                    <div className="products-search">
+                        <Search size={18} className="products-search-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search products by name or code..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        {searchTerm && (
+                            <button
+                                type="button"
+                                className="products-search-clear"
+                                onClick={() => setSearchTerm('')}
+                                aria-label="Clear search"
+                            >
+                                ×
+                            </button>
+                        )}
+                    </div>
                     <div className="products-grid">
                         {currentProducts.map(product => (
                             <Link key={product.id} to={`/products/${product.id}`} className="product-card">

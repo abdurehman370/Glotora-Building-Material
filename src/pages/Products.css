@@ -13,6 +13,51 @@
     min-width: 0;
 }
 
+.products-search {
+    position: relative;
+    margin-bottom: 2rem;
+    background-color: var(--white);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+}
+
+.products-search input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.6rem 0.75rem 0.6rem 0.5rem;
+    font-size: 0.95rem;
+    background: transparent;
+    color: var(--text-medium);
+}
+
+.products-search input::placeholder {
+    color: var(--text-light);
+}
+
+.products-search-icon {
+    color: var(--text-light);
+    margin-right: 0.25rem;
+}
+
+.products-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    padding: 0 0.25rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.products-search-clear:hover {
+    color: var(--primary-orange);
+}
+
 .products-sidebar {
     background-color: var(--white);
     border: 1px solid var(--border-color);

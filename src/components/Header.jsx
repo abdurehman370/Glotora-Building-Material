@@ -92,7 +92,10 @@ const Header = () => {
                     </nav>
 
                     <div className="header-actions">
-                        <button className="icon-btn search-btn"><Search size={22} /></button>
+                        {/* Search goes to Products page where search box is available */}
+                        <Link to="/products" className="icon-btn search-btn">
+                            <Search size={22} />
+                        </Link>
                         <Link to="/wishlist" className="icon-btn">
                             <Heart size={22} />
                             <span className="badge">0</span>
