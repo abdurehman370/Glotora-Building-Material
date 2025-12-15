@@ -44,8 +44,11 @@ const Header = () => {
                 <div className="container header-inner">
                     <div className="logo-wrapper">
                         <Link to="/" className="logo">
-                            <h1>GLOTRA</h1>
-                            <span className="subtitle">BUILDING MATERIALS</span>
+                            <img src="/images/logo.svg" alt="Glotra logo" className="logo-mark" />
+                            <div className="logo-text">
+                                <h1>GLOTRA</h1>
+                                <span className="subtitle">BUILDING MATERIALS</span>
+                            </div>
                         </Link>
                     </div>
 

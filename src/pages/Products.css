@@ -5,6 +5,14 @@
     align-items: start;
 }
 
+.products-page {
+    overflow-x: hidden;
+}
+
+.products-grid-container {
+    min-width: 0;
+}
+
 .products-sidebar {
     background-color: var(--white);
     border: 1px solid var(--border-color);

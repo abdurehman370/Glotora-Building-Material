@@ -1,0 +1,8 @@
+<svg width="110" height="80" viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Glotra logo</title>
+<desc id="desc">Three overlapping rounded rectangles in blue shades</desc>
+<rect x="0" y="26" width="60" height="40" rx="4" fill="#bed4eb"/>
+<rect x="25" y="13" width="65" height="45" rx="4" fill="#0b69b4"/>
+<rect x="50" y="0" width="60" height="55" rx="4" fill="#153c7a"/>
+</svg>
+

@@ -38,6 +38,11 @@
   padding: 0;
 }
 
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-main);
   color: var(--text-medium);
@@ -45,6 +50,7 @@ body {
   background-color: var(--bg-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* prevent horizontal scroll/sidebar */
 }
 
 /* Animations */
